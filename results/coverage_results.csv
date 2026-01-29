@@ -1,5 +1,5 @@
 class_name,cyclomatic,npath,cognitive,line_percentage,branch_percentage,line_test_passed,branch_test_passed,line_failure_reason,branch_failure_reason,line_covered,branch_covered,line_missed,branch_missed,class_under_test,test_script_line,test_script_branch
-boundedAngleRadians,3,4,2,,,False,False,Compilation Error,Compilation Error,,,,,"public class boundedAngleRadians {
+boundedAngleRadians,3,4,2,,,False,False,Test Failed,Test Failed,,,,,"public class boundedAngleRadians {
 
     public static double boundedAngleRadians(double v) {
     while (v <= -Math.PI) v += 2 * Math.PI;
@@ -7,8 +7,104 @@ boundedAngleRadians,3,4,2,,,False,False,Compilation Error,Compilation Error,,,,,
     return v;
 }
 
-}","Error generating tests with LLM: Error calling model 'gemini-2.0-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 55.813981079s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '55s'}]}}","Error generating tests with LLM: Error calling model 'gemini-2.0-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 20.096233393s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '20s'}]}}"
-seperatorMatrix,12,480,9,,,False,False,Compilation Error,Compilation Error,,,,,"public class seperatorMatrix {
+}","import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class boundedAngleRadiansTest {
+
+    private final boundedAngleRadians boundedAngleInstance = new boundedAngleRadians();
+
+    @Test
+    public void testBoundedAngleRadians_NegativeValue() {
+        double result = boundedAngleRadians.boundedAngleRadians(-Math.PI - 1);
+        assertEquals(-1, result, 0.001);
+    }
+
+    @Test
+    public void testBoundedAngleRadians_PositiveValue() {
+        double result = boundedAngleRadians.boundedAngleRadians(Math.PI + 1);
+        assertEquals(-Math.PI + 1, result, 0.001);
+    }
+
+    @Test
+    public void testBoundedAngleRadians_ZeroValue() {
+        double result = boundedAngleRadians.boundedAngleRadians(0);
+        assertEquals(0, result, 0.001);
+    }
+
+    @Test
+    public void testBoundedAngleRadians_LargeNegativeValue() {
+        double result = boundedAngleRadians.boundedAngleRadians(-3 * Math.PI);
+        assertEquals(Math.PI, result, 0.001);
+    }
+
+    @Test
+    public void testBoundedAngleRadians_LargePositiveValue() {
+        double result = boundedAngleRadians.boundedAngleRadians(3 * Math.PI);
+        assertEquals(-Math.PI, result, 0.001);
+    }
+
+    @Test
+    public void testBoundedAngleRadians_MultipleRotations() {
+        double result = boundedAngleRadians.boundedAngleRadians(5 * Math.PI);
+        assertEquals(Math.PI, result, 0.001);
+    }
+
+    @Test
+    public void testBoundedAngleRadians_MultipleNegativeRotations() {
+        double result = boundedAngleRadians.boundedAngleRadians(-5 * Math.PI);
+        assertEquals(-Math.PI, result, 0.001);
+    }
+}","import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class boundedAngleRadiansTest {
+
+    private final boundedAngleRadians instance = new boundedAngleRadians();
+
+    @Test
+    void testBoundedAngleRadiansZero() {
+        double result = boundedAngleRadians.boundedAngleRadians(0);
+        assertEquals(0, result, 1e-9);
+    }
+
+    @Test
+    void testBoundedAngleRadiansPositivePi() {
+        double result = boundedAngleRadians.boundedAngleRadians(Math.PI);
+        assertEquals(-Math.PI, result, 1e-9);
+    }
+
+    @Test
+    void testBoundedAngleRadiansNegativePi() {
+        double result = boundedAngleRadians.boundedAngleRadians(-Math.PI);
+        assertEquals(Math.PI, result, 1e-9);
+    }
+
+    @Test
+    void testBoundedAngleRadiansPositiveTwoPi() {
+        double result = boundedAngleRadians.boundedAngleRadians(2 * Math.PI);
+        assertEquals(0, result, 1e-9);
+    }
+
+    @Test
+    void testBoundedAngleRadiansNegativeTwoPi() {
+        double result = boundedAngleRadians.boundedAngleRadians(-2 * Math.PI);
+        assertEquals(0, result, 1e-9);
+    }
+
+    @Test
+    void testBoundedAngleRadiansPositiveThreePi() {
+        double result = boundedAngleRadians.boundedAngleRadians(3 * Math.PI);
+        assertEquals(-Math.PI, result, 1e-9);
+    }
+
+    @Test
+    void testBoundedAngleRadiansNegativeThreePi() {
+        double result = boundedAngleRadians.boundedAngleRadians(-3 * Math.PI);
+        assertEquals(Math.PI, result, 1e-9);
+    }
+}"
+seperatorMatrix,12,480,9,94.12,95.45,True,True,,,16,21,1,1,"public class seperatorMatrix {
 
     public static int seperatorMatrix(boolean a, boolean b, boolean c) {
     int i = 0;
@@ -29,8 +125,100 @@ seperatorMatrix,12,480,9,,,False,False,Compilation Error,Compilation Error,,,,,"
     return 11;
 }
 
-}","Error generating tests with LLM: Error calling model 'gemini-2.0-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 18.14489641s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '18s'}]}}","Error generating tests with LLM: Error calling model 'gemini-2.0-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 41.004794046s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '41s'}]}}"
-arabicCharShapesDuel,22,22,10,,,False,False,Compilation Error,Compilation Error,,,,,"public class arabicCharShapesDuel {
+}","import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class seperatorMatrixTest {
+
+    private final seperatorMatrix seperatorMatrixInstance = new seperatorMatrix();
+
+    @Test
+    void testSeperatorMatrixTrueTrueTrue() {
+        assertEquals(11, seperatorMatrix.seperatorMatrix(true, true, true));
+    }
+
+    @Test
+    void testSeperatorMatrixTrueTrueFalse() {
+        assertEquals(10, seperatorMatrix.seperatorMatrix(true, true, false));
+    }
+
+    @Test
+    void testSeperatorMatrixTrueFalseTrue() {
+        assertEquals(10, seperatorMatrix.seperatorMatrix(true, false, true));
+    }
+
+    @Test
+    void testSeperatorMatrixFalseTrueTrue() {
+        assertEquals(1, seperatorMatrix.seperatorMatrix(false, true, true));
+    }
+
+    @Test
+    void testSeperatorMatrixTrueFalseFalse() {
+        assertEquals(0, seperatorMatrix.seperatorMatrix(true, false, false));
+    }
+
+    @Test
+    void testSeperatorMatrixFalseTrueFalse() {
+        assertEquals(0, seperatorMatrix.seperatorMatrix(false, true, false));
+    }
+
+    @Test
+    void testSeperatorMatrixFalseFalseTrue() {
+        assertEquals(0, seperatorMatrix.seperatorMatrix(false, false, true));
+    }
+
+    @Test
+    void testSeperatorMatrixFalseFalseFalse() {
+        assertEquals(0, seperatorMatrix.seperatorMatrix(false, false, false));
+    }
+}","import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+public class seperatorMatrixTest {
+
+    private final seperatorMatrix instance = new seperatorMatrix();
+
+    @Test
+    void test_seperatorMatrix_allTrue() {
+        assertEquals(11, seperatorMatrix.seperatorMatrix(true, true, true));
+    }
+
+    @Test
+    void test_seperatorMatrix_aTrue_bTrue_cFalse() {
+        assertEquals(10, seperatorMatrix.seperatorMatrix(true, true, false));
+    }
+
+    @Test
+    void test_seperatorMatrix_aTrue_bFalse_cTrue() {
+        assertEquals(10, seperatorMatrix.seperatorMatrix(true, false, true));
+    }
+
+    @Test
+    void test_seperatorMatrix_aFalse_bTrue_cTrue() {
+        assertEquals(1, seperatorMatrix.seperatorMatrix(false, true, true));
+    }
+
+    @Test
+    void test_seperatorMatrix_aTrue_bFalse_cFalse() {
+        assertEquals(0, seperatorMatrix.seperatorMatrix(true, false, false));
+    }
+
+    @Test
+    void test_seperatorMatrix_aFalse_bTrue_cFalse() {
+        assertEquals(0, seperatorMatrix.seperatorMatrix(false, true, false));
+    }
+
+    @Test
+    void test_seperatorMatrix_aFalse_bFalse_cTrue() {
+        assertEquals(0, seperatorMatrix.seperatorMatrix(false, false, true));
+    }
+
+    @Test
+    void test_seperatorMatrix_allFalse() {
+        assertEquals(0, seperatorMatrix.seperatorMatrix(false, false, false));
+    }
+}"
+arabicCharShapesDuel,22,22,10,100.0,100.0,True,True,,,5,42,0,0,"public class arabicCharShapesDuel {
 
     public static boolean arabicCharShapesDuel(char c) {
     int charVal = c;
@@ -40,4 +228,97 @@ arabicCharShapesDuel,22,22,10,,,False,False,Compilation Error,Compilation Error,
     return false;
 }
 
-}","Error generating tests with LLM: Error calling model 'gemini-2.0-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\nPlease retry in 321.789396ms.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '0s'}]}}","Error generating tests with LLM: Error calling model 'gemini-2.0-flash' (RESOURCE_EXHAUSTED): 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-api/docs/rate-limits. To monitor your current usage, head to: https://ai.dev/rate-limit. \n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_input_token_count, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\n* Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash\nPlease retry in 24.226876513s.', 'status': 'RESOURCE_EXHAUSTED', 'details': [{'@type': 'type.googleapis.com/google.rpc.Help', 'links': [{'description': 'Learn more about Gemini API quotas', 'url': 'https://ai.google.dev/gemini-api/docs/rate-limits'}]}, {'@type': 'type.googleapis.com/google.rpc.QuotaFailure', 'violations': [{'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_input_token_count', 'quotaId': 'GenerateContentInputTokensPerModelPerMinute-FreeTier', 'quotaDimensions': {'location': 'global', 'model': 'gemini-2.0-flash'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerMinutePerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}, {'quotaMetric': 'generativelanguage.googleapis.com/generate_content_free_tier_requests', 'quotaId': 'GenerateRequestsPerDayPerProjectPerModel-FreeTier', 'quotaDimensions': {'model': 'gemini-2.0-flash', 'location': 'global'}}]}, {'@type': 'type.googleapis.com/google.rpc.RetryInfo', 'retryDelay': '24s'}]}}"
+}","import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
+public class arabicCharShapesDuelTest {
+
+    private final arabicCharShapesDuel duelInstance = new arabicCharShapesDuel();
+
+    @Test
+    void testArabicCharShapesDuel_ReturnsTrue_ForValidCharacters() {
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u0626'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u0628'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u062A'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u062E'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u0633'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u063A'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u0641'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u0647'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u0649'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u064A'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u0678'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u0687'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u069A'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u06BF'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u06C1'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u06CC'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u06CE'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u06D0'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u06D1'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u06FA'));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel('\u06FC'));
+    }
+
+    @Test
+    void testArabicCharShapesDuel_ReturnsFalse_ForInvalidCharacters() {
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel('a'));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel('A'));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel('0'));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel('!'));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel('@'));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel('#'));
+    }
+}","import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+
+public class arabicCharShapesDuelTest {
+
+    private final arabicCharShapesDuel arabicCharShapesDuelInstance = new arabicCharShapesDuel();
+
+    @Test
+    public void testArabicCharShapesDuel_ReturnsTrue_ForValidCharacters() {
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0626));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0628));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x062A));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x062E));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0633));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x063A));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0641));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0647));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0649));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x064A));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0678));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0687));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x069A));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x06BF));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x6C1));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x6CC));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x6CE));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x06D0));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x06D1));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x06FA));
+        assertTrue(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x06FC));
+    }
+
+    @Test
+    public void testArabicCharShapesDuel_ReturnsFalse_ForInvalidCharacters() {
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0000));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0625));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0629));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x062F));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0632));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x063B));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0640));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0648));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0677));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0688));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x0699));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x06C0));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x06CD));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x06CF));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x06D2));
+        assertFalse(arabicCharShapesDuel.arabicCharShapesDuel((char) 0x06FD));
+    }
+}"
